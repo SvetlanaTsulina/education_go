@@ -1,10 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
 
-func main()  {
-	fmt.Println("Hello, NIX Education")
+func main() {
+	res, err := http.Get("https://jsonplaceholder.typicode.com/posts")
+	if err != nil {
+		log.Fatal(err)
+	}
+	robots, err := ioutil.ReadAll(res.Body)
+	res.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s", robots)
 }
-
-
-
