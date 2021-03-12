@@ -18,5 +18,5 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Printf("%s", robots)
-	fmt.Printf("%s", "test")
+
 }
