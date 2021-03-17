@@ -8,7 +8,16 @@ import (
 )
 
 func main() {
-	res, err := http.Get("https://jsonplaceholder.typicode.com/posts")
+	for i := 1; i <= 100; i++ {
+		go RequestAndPrint(i)
+	}
+	var input string
+	fmt.Scanln(&input)
+
+}
+
+func RequestAndPrint(i int) {
+	res, err := http.Get(fmt.Sprintf("https://jsonplaceholder.typicode.com/posts/%d", i))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -17,6 +26,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%s", robots)
 
+	fmt.Printf("%s", robots)
 }
